@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -144,7 +143,6 @@ public class Main {
                         catch (Exception e){
                             System.out.println("Date is invalid");
                         }
-
                     }
                 }
                 else{
@@ -153,7 +151,7 @@ public class Main {
                 }
             }
             else if(selection==2){
-                System.out.println("1-Show All Drivers 2- Show All Teams 3-Show Drivers Of Team 4-Show Race Schedule");
+                System.out.println("1-Show All Drivers 2- Show All Teams 3-Show Drivers Of Team 4-Show Race Schedule 5-Show Race Teams for Chosen Race");
                 selection=scanner.nextInt();
                 if(selection==1){
                     System.out.println("Drivers:");
@@ -177,6 +175,12 @@ public class Main {
                 else if(selection==4){
                     System.out.println("The Race Schedule is:");
                     Races.showAllRaces();
+                }
+                else if(selection==5){
+                    Races.showAllRaces();
+                    scanner.nextLine();
+                    String str=scanner.nextLine();
+                    Races.showRaceTeams(str);
                 }
             }
             else if(selection==3){

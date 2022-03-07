@@ -9,9 +9,9 @@ public class Races implements Comparable<Races>{
     public static ArrayList<Races> allRaces=new ArrayList<>();
     public ArrayList<Teams> raceTeams=new ArrayList<>();
     Races(Date d,String place){
-        date=d;
-        circuit=place;
-        allRaces.add(this);
+            date=d;
+            circuit=place;
+            allRaces.add(this);
     }
     public static void joinRace(Teams t,String name){
         for(Races r:allRaces){

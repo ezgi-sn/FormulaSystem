@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 
 public class Driver extends PersonCreator {
-    public static ArrayList<Driver> allDrivers=new ArrayList<Driver>();
+    public static ArrayList<Driver> allDrivers=new ArrayList<>();
     Driver(String name, String surname, int id){
     super.setPerson(name,surname,id);
     allDrivers.add(this);
@@ -23,7 +23,7 @@ public class Driver extends PersonCreator {
     }
     static void printAllDrivers(){
         for(Driver d:allDrivers){
-            System.out.println(d.id+ "-"+ d.name + " " + d.surname);
+            System.out.println(d.getID()+ "-"+ d.getName() + " " + d.getSurname());
         }
     }
 

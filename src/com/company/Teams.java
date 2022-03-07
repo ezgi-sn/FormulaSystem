@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Teams {
     protected String team;
     protected int id;
-    public ArrayList<Driver> driversOfTeams=new ArrayList<Driver>();
-    public static ArrayList<Teams> allTeams=new ArrayList<Teams>();
+    public ArrayList<Driver> driversOfTeams=new ArrayList<>();
+    public static ArrayList<Teams> allTeams=new ArrayList<>();
     Teams(String team,int id){
         this.team=team;
         this.id=id;
@@ -52,6 +52,7 @@ public class Teams {
         for(int i=len-1; i>=0;i--){
             t.driversOfTeams.remove(i);
         }
+        //t.driversOfTeams.subList(0,t.driversOfTeams.size()).clear();
         for(Races r:Races.allRaces){
             for(Teams team:r.raceTeams){
                 if(team.team.equals(t.team)){
