@@ -87,7 +87,7 @@ public class Main {
                         int choice=scanner.nextInt();
                         for(Teams t:Teams.allTeams){
                             if(choice==t.id){
-                                System.out.println("1-Add a Racer to the Team 2-Join a Race 3-Withdraw from Tournament");
+                                System.out.println("1-Add a Racer to the Team 2-Join a Race 3-Withdraw from the Tournament");
                                 selection=scanner.nextInt();
                                 if(selection==1){
                                 Driver.printAllDrivers();
@@ -95,7 +95,6 @@ public class Main {
                                     scanner.nextLine();
                                     String name=scanner.nextLine();
                                     t.addTeamList(name);
-                                    System.out.println("Drivers of the team "+t.team);
                                     t.showDrivers(t);
                                 }
                                 else if(selection==2){
@@ -104,22 +103,28 @@ public class Main {
                                     scanner.nextLine();
                                     String name=scanner.nextLine();
                                     Races.joinRace(t,name);
-                                    System.out.println("Do you want to continue? (y/n)");
-                                    String s=scanner.next();
-                                    if(s.equals("n")){
-                                        break;
-                                    }
 
                                 }
                                 else if(selection==3){
-
+                                    System.out.println("Do you want to withdraw from the Tournament? (y/n)");
+                                    scanner.nextLine();
+                                    String s=scanner.nextLine();
+                                    if(s.equals("y")){
+                                        t.withdraw(t);
+                                    }
+                                    else{
+                                        System.out.println("Do you want to continue? (y/n)");
+                                        s=scanner.next();
+                                        if(s.equals("n")){
+                                            break;
+                                        }
+                                    }
                                 }
                                 else{
-
+                                    System.out.println("Invalid input");
                                 }
                             }
                         }
-
                     }
                     else if(selection==3){
                         System.out.println("Add a Race to the Calendar");
@@ -148,7 +153,31 @@ public class Main {
                 }
             }
             else if(selection==2){
-                System.out.println("1-Show All Drivers 2- Show All Teams 3-Show Race Schedule");
+                System.out.println("1-Show All Drivers 2- Show All Teams 3-Show Drivers Of Team 4-Show Race Schedule");
+                selection=scanner.nextInt();
+                if(selection==1){
+                    System.out.println("Drivers:");
+                    Driver.printAllDrivers();
+                }
+                else if(selection==2){
+                    System.out.println("Teams:");
+                    Teams.printAllTeams();
+                }
+                else if(selection==3){
+                    System.out.println("Enter your choice");
+                    System.out.println("1-Ferrari 2-McLaren 3-Mercedes 4-Red Bull 5-Alpha Tauri 6-Alpha Romeo 7-Aston Martin 8-Haas");
+                    int choice=scanner.nextInt();
+                    for(Teams t:Teams.allTeams){
+                        if(choice==t.id) {
+                            t.showDrivers(t);
+                            break;
+                        }
+                        }
+                }
+                else if(selection==4){
+                    System.out.println("The Race Schedule is:");
+                    Races.showAllRaces();
+                }
             }
             else if(selection==3){
                 break;
@@ -158,8 +187,6 @@ public class Main {
                 System.out.println("1-Log in as Admin");
                 System.out.println("2-Log in as User");
                 System.out.println("3-Close the Program");
-
-
             }
         }
     }

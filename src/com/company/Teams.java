@@ -37,6 +37,7 @@ public class Teams {
           System.out.println("The Driver has already in a team");
     }
     public void showDrivers(Teams t){
+        System.out.println("Drivers of the team "+t.team);
      for(Driver d:t.driversOfTeams){
          System.out.println(d.id + "- " + d.name + " "+ d.surname);
      }
@@ -47,10 +48,18 @@ public class Teams {
         }
     }
     public void withdraw(Teams t){
-        for(Driver d:t.driversOfTeams){
-           t.driversOfTeams.remove(d);
+        int len=t.driversOfTeams.size();
+        for(int i=len-1; i>=0;i--){
+            t.driversOfTeams.remove(i);
         }
-        Races.raceTeams.remove(t);
+        for(Races r:Races.allRaces){
+            for(Teams team:r.raceTeams){
+                if(team.team.equals(t.team)){
+                    r.raceTeams.remove(t);
+                    break;
+                }
+            }
+        }
     }
 }
 

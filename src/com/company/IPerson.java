@@ -5,6 +5,4 @@ public interface IPerson {
     public String getName();
     public String getSurname();
     public int getID();
-
-
 }
