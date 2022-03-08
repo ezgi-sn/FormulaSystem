@@ -26,5 +26,14 @@ public class Driver extends PersonCreator {
             System.out.println(d.getID()+ "-"+ d.getName() + " " + d.getSurname());
         }
     }
-
+    static boolean checkId(int id){
+        boolean flag=true;
+        for(Driver d:allDrivers){
+            if(id==d.id) {
+                flag=false;
+                break;
+            }
+        }
+        return flag;
+    }
 }

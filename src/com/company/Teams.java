@@ -62,5 +62,15 @@ public class Teams {
             }
         }
     }
+    public static void removeDriver(String name){
+        for(Teams t:allTeams){
+            for(Driver driver:t.driversOfTeams){
+                if(driver.name.equals(name)){
+                    t.driversOfTeams.remove(driver);
+                    break;
+                }
+            }
+        }
+    }
 }
 

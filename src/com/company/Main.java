@@ -20,7 +20,6 @@ public class Main {
         Scanner scanner=new Scanner(System.in);
         while (true){
             System.out.println("Enter your choice");
-
             int selection;
             selection=scanner.nextInt();
             if(selection==1) {
@@ -45,19 +44,15 @@ public class Main {
                         System.out.println("Surname of the driver");
                         surname=scanner.nextLine();
                         System.out.println("ID of the driver");
-                        id=scanner.nextInt();
-                            for(Driver d:Driver.allDrivers){
-                                if(d.id==id){
-                                    System.out.println("The ID has already taken, Try another ID");
-                                    System.out.println("ID of the driver");
-                                    id=scanner.nextInt();
-                                }
-                            }
-
+                        int num=scanner.nextInt();
+                        while (!Driver.checkId(num)){
+                            System.out.println("The ID has already taken, Try another ID");
+                            System.out.println("ID of the driver");
+                            num=scanner.nextInt();
+                        }
+                        id=num;
                         Driver driver=new Driver(name,surname,id);
-                        System.out.println("Do you want to continue? (y/n)");
-                        String s=scanner.next();
-                        if(s.equals("n")){
+                        if(checkCont()){
                             break;
                         }
                         }
@@ -67,11 +62,10 @@ public class Main {
                             System.out.println("Name of the driver you want to delete");
                             String name=scanner.nextLine();
                             Driver.checkDriverList(name);
+                            Teams.removeDriver(name);
                             System.out.println("Driver list after deletion");
                             Driver.printAllDrivers();
-                            System.out.println("Do you want to continue? (y/n)");
-                            String s=scanner.next();
-                            if(s.equals("n")){
+                            if(checkCont()){
                                 break;
                             }
                         }
@@ -95,6 +89,9 @@ public class Main {
                                     String name=scanner.nextLine();
                                     t.addTeamList(name);
                                     t.showDrivers(t);
+                                    if(checkCont()){
+                                        break;
+                                    }
                                 }
                                 else if(selection==2){
                                     System.out.println("Name of the Circuit You Want To Join");
@@ -102,6 +99,9 @@ public class Main {
                                     scanner.nextLine();
                                     String name=scanner.nextLine();
                                     Races.joinRace(t,name);
+                                    if(checkCont()){
+                                        break;
+                                    }
 
                                 }
                                 else if(selection==3){
@@ -112,9 +112,7 @@ public class Main {
                                         t.withdraw(t);
                                     }
                                     else{
-                                        System.out.println("Do you want to continue? (y/n)");
-                                        s=scanner.next();
-                                        if(s.equals("n")){
+                                        if(checkCont()){
                                             break;
                                         }
                                     }
@@ -147,11 +145,10 @@ public class Main {
                 }
                 else{
                     System.out.println("Password is not correct");
-                    break;
                 }
             }
             else if(selection==2){
-                System.out.println("1-Show All Drivers 2- Show All Teams 3-Show Drivers Of Team 4-Show Race Schedule 5-Show Race Teams for Chosen Race");
+                System.out.println("1-Show All Drivers 2- Show All Teams 3-Show Drivers Of Chosen Team 4-Show Race Schedule 5-Show Race Teams for Chosen Race");
                 selection=scanner.nextInt();
                 if(selection==1){
                     System.out.println("Drivers:");
@@ -178,6 +175,7 @@ public class Main {
                 }
                 else if(selection==5){
                     Races.showAllRaces();
+                    System.out.println("Name of the circuit you want to see the participants");
                     scanner.nextLine();
                     String str=scanner.nextLine();
                     Races.showRaceTeams(str);
@@ -195,4 +193,11 @@ public class Main {
         }
     }
 
+
+    public static boolean checkCont(){
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Do you want to continue? (y/n)");
+        String s=scanner.next();
+        return s.equals("n");
+    }
 }
